@@ -1,0 +1,2 @@
+DROP TABLE Person;
+DROP DATABASE OurDemoDb;

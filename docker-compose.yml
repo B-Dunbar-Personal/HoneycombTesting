@@ -1,0 +1,25 @@
+---
+version: "3.4"
+services:
+  demo.api:
+    container_name: cop
+    image: ${DOCKER_REGISTRY-}demoapi
+    environment:
+      AppSettings__Datasource: copdb,1433
+      AppSettings__UserId: sa
+      AppSettings__Password: P@assw0rd1
+    build:
+      context: .
+      dockerfile: Demo.Api/Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - sql-server-database
+  sql-server-database:
+    container_name: copdb
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: P@assw0rd1
+      ACCEPT_EULA: Y
+    ports:
+      - 1433:1433
