@@ -1,31 +1,28 @@
+---
 name: Docker Image CI
-
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker compose up -d
-      
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v3
-      uses: microsoft/variable-substitution@v1
-       with:
-        files: 'TestSettings.json'
-    env:
-        password: ${{ secrets.DBPASSWORD }}
-      with:
-        dotnet-version: 6.0.x
-     
-    - name: Execute Tests
-      run: dotnet test ./Demo.Api.sln
+      - name: Build the Docker image
+      - uses: actions/checkout@v3
+        run: docker compose up -d
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Replace Variables
+      - uses: microsoft/variable-substitution@v1
+        with:
+          files: employee.json
+      - env:
+        AppSettings.Password: ${{ build.DBPASSWORD }}
+      - name: Execute Tests
+      - run: dotnet test ./Demo.Api.sln
