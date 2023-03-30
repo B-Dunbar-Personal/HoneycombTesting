@@ -1,22 +1,25 @@
-﻿using Demo.Api.DatabaseContainer;
+﻿using Castle.Core.Configuration;
+using Demo.Api.DatabaseContainer;
 using Demo.Api.Tests.Scripts;
+using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 
-namespace Demo.Api.Tests.Steps
+namespace Demo.Api.Tests.Hooks
 {
     [Binding]
     [Scope(Tag = "DataSeeder")]
-    public class DatabaseSeeder
+    public class DatabaseSetup
     {
         private ScenarioContext _scenarioContext;
         private readonly SqlContainer _container;
 
-        public DatabaseSeeder(ScenarioContext scenarioContext)
+        public DatabaseSetup(ScenarioContext scenarioContext)
         {
+            var configuration = Configuration().GetSection("AppSettings").Get<AppSettings>();
             var containerConfiguration = new ContainerConfiguration
             {
                 PortNumber = "1433",
-                DatabasePassword = "P@assw0rd1"
+                DatabasePassword = configuration.Password
             };
             _container = new SqlContainer(containerConfiguration);
             _scenarioContext = scenarioContext;
@@ -25,24 +28,18 @@ namespace Demo.Api.Tests.Steps
         [BeforeScenario]
         public async Task SetupDatabase()
         {
-            _scenarioContext[ScenarioContextTags.Person] = new Person
-            {
-                PersonId = 1,
-                LastName = "Cheese",
-                FirstName = "Test",
-                Address1 = "89 Not an Address",
-                Address2 = "AddressLine2",
-                City = "Dingleberry".ToUpper(),
-            };
             _scenarioContext[ScenarioContextTags.SqlContainer] = _container;
             await _container.ExecuteNonQuery(await SqlFileReader.GetSqlFile("CreateDatabase"));
             await _container.ExecuteNonQuery(await SqlFileReader.GetSqlFile("CreatePersonTable"));
         }
 
-        [AfterScenario]
-        public async Task DestroySeededData()
+        private Microsoft.Extensions.Configuration.IConfiguration Configuration()
         {
-            await _container.ExecuteNonQuery(await SqlFileReader.GetSqlFile("CleanUpTest"));
+            IConfigurationRoot config = new ConfigurationBuilder()
+                   .AddJsonFile("TestSettings.json")
+                   .Build();
+
+                return config;       
         }
     }
 }

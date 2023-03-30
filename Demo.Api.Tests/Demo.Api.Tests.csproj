@@ -15,6 +15,7 @@
     <None Remove="Scripts\CreateDatabase.sql" />
     <None Remove="Scripts\CreatePersonTable.sql" />
     <None Remove="Scripts\SeedPersonTable.sql" />
+    <None Remove="TestSettings.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\SeedPersonTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

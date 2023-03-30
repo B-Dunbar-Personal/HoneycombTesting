@@ -40,7 +40,8 @@ namespace Demo.Api.Tests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "SimpleDockerTests", "Tests to prove docker working in a honeycomb envrionment ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "SimpleDockerTests", "Tests to prove docker working in a honeycomb envrionment using BDD\r\n\r\nAs a consum" +
+                    "er of the Address endpoint\r\nI want to know a users Address is concatonated", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,17 +81,25 @@ namespace Demo.Api.Tests
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="AddressLine1_AddressLine2_City_ConcatonateUsersAddressLines_ConcatonateSuccess")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Concatonate Address Is A Success 3 Address Lines")]
         [Xunit.TraitAttribute("FeatureTitle", "SimpleDockerTests")]
-        [Xunit.TraitAttribute("Description", "AddressLine1_AddressLine2_City_ConcatonateUsersAddressLines_ConcatonateSuccess")]
+        [Xunit.TraitAttribute("Description", "Concatonate Address Is A Success 3 Address Lines")]
         [Xunit.TraitAttribute("Category", "DataSeeder")]
-        public void AddressLine1_AddressLine2_City_ConcatonateUsersAddressLines_ConcatonateSuccess()
+        [Xunit.InlineDataAttribute("1", "AddressLine2", new string[0])]
+        public void ConcatonateAddressIsASuccess3AddressLines(string testDataId, string address2, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "DataSeeder"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AddressLine1_AddressLine2_City_ConcatonateUsersAddressLines_ConcatonateSuccess", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            argumentsOfScenario.Add("testDataId", testDataId);
+            argumentsOfScenario.Add("Address2", address2);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Concatonate Address Is A Success 3 Address Lines", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,14 +109,284 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("data is seeded with an id of 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "PersonId",
+                            string.Format("{0}", testDataId)});
+                table1.AddRow(new string[] {
+                            "LastName",
+                            "Test"});
+                table1.AddRow(new string[] {
+                            "FirstName",
+                            "Sarah"});
+                table1.AddRow(new string[] {
+                            "Address1",
+                            "89 Not An Address"});
+                table1.AddRow(new string[] {
+                            "Address2",
+                            string.Format("{0}", address2)});
+                table1.AddRow(new string[] {
+                            "City",
+                            "DingleBerry"});
+#line 10
+ testRunner.Given("we have a user in our database:", ((string)(null)), table1, "Given ");
 #line hidden
-#line 8
- testRunner.When("a request is made to \'/Demo/Address?id=1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.When(string.Format("a request is made to \'/Demo/Address?id={0}\'", testDataId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
- testRunner.Then("a 200 is returned and concatonation should be a success", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+ testRunner.Then("a 200 result is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+ testRunner.And("address1, address2, and city are in a single line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Concatonate Address Is A Success, Address Line 2 null")]
+        [Xunit.TraitAttribute("FeatureTitle", "SimpleDockerTests")]
+        [Xunit.TraitAttribute("Description", "Concatonate Address Is A Success, Address Line 2 null")]
+        [Xunit.TraitAttribute("Category", "DataSeeder")]
+        [Xunit.InlineDataAttribute("1", new string[0])]
+        public void ConcatonateAddressIsASuccessAddressLine2Null(string testDataId, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "DataSeeder"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testDataId", testDataId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Concatonate Address Is A Success, Address Line 2 null", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "PersonId",
+                            string.Format("{0}", testDataId)});
+                table2.AddRow(new string[] {
+                            "LastName",
+                            "Test"});
+                table2.AddRow(new string[] {
+                            "FirstName",
+                            "Sarah"});
+                table2.AddRow(new string[] {
+                            "Address1",
+                            "89 Not An Address"});
+                table2.AddRow(new string[] {
+                            "City",
+                            "DingleBerry"});
+#line 28
+ testRunner.Given("we have a user in our database:", ((string)(null)), table2, "Given ");
+#line hidden
+#line 35
+ testRunner.When(string.Format("a request is made to \'/Demo/Address?id={0}\'", testDataId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 36
+ testRunner.Then("a 200 result is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 37
+ testRunner.And("address1, and city are in a single line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Concatonate Address Is A Success, Address Line 2 Empty")]
+        [Xunit.TraitAttribute("FeatureTitle", "SimpleDockerTests")]
+        [Xunit.TraitAttribute("Description", "Concatonate Address Is A Success, Address Line 2 Empty")]
+        [Xunit.TraitAttribute("Category", "DataSeeder")]
+        [Xunit.InlineDataAttribute("1", new string[0])]
+        public void ConcatonateAddressIsASuccessAddressLine2Empty(string testDataId, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "DataSeeder"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testDataId", testDataId);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Concatonate Address Is A Success, Address Line 2 Empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 44
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "PersonId",
+                            string.Format("{0}", testDataId)});
+                table3.AddRow(new string[] {
+                            "LastName",
+                            "Test"});
+                table3.AddRow(new string[] {
+                            "FirstName",
+                            "Sarah"});
+                table3.AddRow(new string[] {
+                            "Address1",
+                            "89 Not An Address"});
+                table3.AddRow(new string[] {
+                            "Address2",
+                            ""});
+                table3.AddRow(new string[] {
+                            "City",
+                            "DingleBerry"});
+#line 45
+ testRunner.Given("we have a user in our database:", ((string)(null)), table3, "Given ");
+#line hidden
+#line 53
+ testRunner.When(string.Format("a request is made to \'/Demo/Address?id={0}\'", testDataId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 54
+ testRunner.Then("a 200 result is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 55
+ testRunner.And("address1, and city are in a single line", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="More than one result returned from the database returns a failure")]
+        [Xunit.TraitAttribute("FeatureTitle", "SimpleDockerTests")]
+        [Xunit.TraitAttribute("Description", "More than one result returned from the database returns a failure")]
+        [Xunit.TraitAttribute("Category", "DataSeeder")]
+        [Xunit.InlineDataAttribute("1", "2", new string[0])]
+        public void MoreThanOneResultReturnedFromTheDatabaseReturnsAFailure(string testDataId, string timesSeeded, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "DataSeeder"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testDataId", testDataId);
+            argumentsOfScenario.Add("timesSeeded", timesSeeded);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("More than one result returned from the database returns a failure", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 62
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table4.AddRow(new string[] {
+                            "PersonId",
+                            string.Format("{0}", testDataId)});
+                table4.AddRow(new string[] {
+                            "LastName",
+                            "Test"});
+                table4.AddRow(new string[] {
+                            "FirstName",
+                            "Sarah"});
+                table4.AddRow(new string[] {
+                            "Address1",
+                            "89 Not An Address"});
+                table4.AddRow(new string[] {
+                            "Address2",
+                            "Line 2"});
+                table4.AddRow(new string[] {
+                            "City",
+                            "DingleBerry"});
+#line 63
+ testRunner.Given(string.Format("we have the same user in our database {0} times:", timesSeeded), ((string)(null)), table4, "Given ");
+#line hidden
+#line 71
+ testRunner.Then(string.Format("a http exception is thrown when \'/Demo/Address?id={0}\' is called", testDataId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="No result from the database returns not found")]
+        [Xunit.TraitAttribute("FeatureTitle", "SimpleDockerTests")]
+        [Xunit.TraitAttribute("Description", "No result from the database returns not found")]
+        [Xunit.TraitAttribute("Category", "DataSeeder")]
+        [Xunit.InlineDataAttribute("1", "2", new string[0])]
+        public void NoResultFromTheDatabaseReturnsNotFound(string testDataId, string testDataIdToFind, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "DataSeeder"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testDataId", testDataId);
+            argumentsOfScenario.Add("testDataIdToFind", testDataIdToFind);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No result from the database returns not found", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 78
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table5.AddRow(new string[] {
+                            "PersonId",
+                            string.Format("{0}", testDataId)});
+                table5.AddRow(new string[] {
+                            "LastName",
+                            "Test"});
+                table5.AddRow(new string[] {
+                            "FirstName",
+                            "Sarah"});
+                table5.AddRow(new string[] {
+                            "Address1",
+                            "89 Not An Address"});
+                table5.AddRow(new string[] {
+                            "Address2",
+                            "Line 2"});
+                table5.AddRow(new string[] {
+                            "City",
+                            "DingleBerry"});
+#line 79
+ testRunner.Given("we have a user in our database:", ((string)(null)), table5, "Given ");
+#line hidden
+#line 87
+ testRunner.When(string.Format("a request is made to \'/Demo/Address?id={0}\'", testDataIdToFind), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 88
+ testRunner.Then("a 404 result is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
