@@ -23,7 +23,7 @@ jobs:
       - name: Replace Variables
         uses: microsoft/variable-substitution@v1 
         with:
-          files: employee.json
+          files: TestSettings.json
         env:
             AppSettings.Password: build.DBPASSWORD
         
