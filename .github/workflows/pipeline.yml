@@ -25,7 +25,7 @@ jobs:
         with:
           files: employee.json
         env:
-            AppSettings.Password: ${{ build.DBPASSWORD }}
+            AppSettings.Password: build.DBPASSWORD
         
       - name: Execute Tests
         run: dotnet test ./Demo.Api.sln
