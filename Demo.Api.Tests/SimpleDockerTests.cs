@@ -1,5 +1,5 @@
 using Demo.Api.DatabaseContainer;
-using DockerIntegrationTesting.Tests.Scripts;
+using Demo.Api.Tests.Scripts;
 using FluentAssertions;
 using RestSharp;
 using System.Net;
