@@ -19,6 +19,7 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Replace Variables
+      - uses: actions/checkout@v3
       - uses: microsoft/variable-substitution@v1
         with:
           files: employee.json
