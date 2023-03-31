@@ -4,10 +4,6 @@ services:
   demo.api:
     container_name: cop
     image: ${DOCKER_REGISTRY-}demoapi
-    environment:
-      AppSettings__Datasource: copdb,1433
-      AppSettings__UserId: sa
-      AppSettings__Password: P@assw0rd1
     build:
       context: .
       dockerfile: Demo.Api/Dockerfile

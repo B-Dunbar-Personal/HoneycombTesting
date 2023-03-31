@@ -1,4 +1,4 @@
-﻿namespace DockerIntegrationTesting.Tests.Scripts
+﻿namespace Demo.Api.Tests.Scripts
 {
     public static class SqlFileReader
     {
