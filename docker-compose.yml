@@ -14,10 +14,8 @@ services:
   sql-server-database:
     container_name: copdb
     image: mcr.microsoft.com/mssql/server
-    secrets: |
-            "github_token=${{ secrets.GITHUB_TOKEN }}"
     environment:
-      SA_PASSWORD: github_token
+      SA_PASSWORD: ${{ build.DBPASSWORD }}
       ACCEPT_EULA: Y
     ports:
       - 1433:1433
