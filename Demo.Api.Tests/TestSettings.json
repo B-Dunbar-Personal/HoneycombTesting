@@ -1,5 +1,7 @@
 {
   "AppSettings": {
+    "Datasource": "localhost,1433",
+    "UserId": "sa",
     "Password": "P@assw0rd1"
   }
 }

@@ -2,8 +2,9 @@
 {
     public interface IContainerConfiguration
     {
-        public string PortNumber { get; set; }
-        public string DatabasePassword { get; set; }
+        public string Datasource { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
 
     }
 }

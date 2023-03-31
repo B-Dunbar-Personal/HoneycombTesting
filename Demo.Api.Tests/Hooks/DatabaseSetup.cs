@@ -1,5 +1,4 @@
-﻿using Castle.Core.Configuration;
-using Demo.Api.DatabaseContainer;
+﻿using Demo.Api.DatabaseContainer;
 using Demo.Api.Tests.Scripts;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
@@ -18,8 +17,9 @@ namespace Demo.Api.Tests.Hooks
             var configuration = Configuration().GetSection("AppSettings").Get<AppSettings>();
             var containerConfiguration = new ContainerConfiguration
             {
-                PortNumber = "1433",
-                DatabasePassword = configuration.Password
+                Datasource = configuration.Datasource,
+                UserId = configuration.UserId,
+                Password = configuration.Password
             };
             _container = new SqlContainer(containerConfiguration);
             _scenarioContext = scenarioContext;

@@ -8,9 +8,6 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Demo.Api/Demo.Api.csproj", "Demo.Api/"]
 RUN dotnet dev-certs https
-ENV	AppSettings__Datasource=localhost,1433
-ENV	AppSettings__UserId=sa
-ENV	AppSettings__Password=P@assw0rd1
 RUN dotnet restore "Demo.Api/Demo.Api.csproj"
 COPY . .
 WORKDIR "/src/Demo.Api"

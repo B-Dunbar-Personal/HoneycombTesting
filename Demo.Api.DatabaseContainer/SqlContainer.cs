@@ -14,9 +14,9 @@ namespace Demo.Api.DatabaseContainer
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-            builder.DataSource = $"localhost,{ContainerConfiguration.PortNumber}";
-            builder.UserID = "sa";
-            builder.Password = ContainerConfiguration.DatabasePassword;
+            builder.DataSource = ContainerConfiguration.Datasource;
+            builder.UserID = ContainerConfiguration.UserId;
+            builder.Password = ContainerConfiguration.Password;
             builder.TrustServerCertificate = true;
 
             return new SqlConnection(builder.ConnectionString);
