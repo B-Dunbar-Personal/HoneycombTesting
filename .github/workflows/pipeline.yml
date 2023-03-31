@@ -23,12 +23,12 @@ jobs:
         run: dotnet restore ./Demo.Api.Tests/Demo.Api.Tests.csproj
         
       - name: Build
-        run: dotnet build ./Demo.Api.Tests/Demo.Api.Tests.csproj
+        run: dotnet build ./Demo.Api.Tests/Demo.Api.Tests.csproj -c Release -o /app/build
 
       - name: Replace Variables
         uses: microsoft/variable-substitution@v1 
         with:
-          files: ./TestSettings.json
+          files: ./app/build/TestSettings.json
         env:
             AppSettings.Password: build.DBPASSWORD
         
