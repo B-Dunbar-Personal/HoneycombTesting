@@ -28,7 +28,7 @@ jobs:
       - name: Replace Variables
         uses: microsoft/variable-substitution@v1 
         with:
-          files: ./app/build/TestSettings.json
+          files: ./Demo.Api.Tests/bin/Release/net6.0/TestSettings.json
         env:
             AppSettings.Password: build.DBPASSWORD
         
