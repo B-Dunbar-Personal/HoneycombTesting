@@ -20,7 +20,7 @@ jobs:
         with:
           dotnet-version: 6.0.x       
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./Demo.Api.Tests/Demo.Api.Tests.csproj
         
       - name: Build
         run: dotnet build ./Demo.Api.Tests/Demo.Api.Tests.csproj
@@ -28,7 +28,7 @@ jobs:
       - name: Replace Variables
         uses: microsoft/variable-substitution@v1 
         with:
-          files: TestSettings.json
+          files: ./TestSettings.json
         env:
             AppSettings.Password: build.DBPASSWORD
         
