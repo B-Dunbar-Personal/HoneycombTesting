@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore ./Demo.Api.Tests/Demo.Api.Tests.csproj
         
       - name: Build
-        run: dotnet build ./Demo.Api.Tests/Demo.Api.Tests.csproj -c Release -o /app/build
+        run: dotnet build ./Demo.Api.Tests/Demo.Api.Tests.csproj -c Release
 
       - name: Replace Variables
         uses: microsoft/variable-substitution@v1 
